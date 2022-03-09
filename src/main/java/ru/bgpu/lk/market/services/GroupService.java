@@ -21,4 +21,8 @@ public class GroupService {
         save(new Group(ADMIN_GROUP, "Администратор системы"));
         save(new Group(USER_GROUP, "Пользователь системы"));
     }
+
+    public boolean existsGroups() {
+        return groupRepository.count() > 0;
+    }
 }
