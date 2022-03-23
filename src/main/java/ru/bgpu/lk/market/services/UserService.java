@@ -1,6 +1,7 @@
 package ru.bgpu.lk.market.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.bgpu.lk.market.models.Group;
 import ru.bgpu.lk.market.models.User;
@@ -23,5 +24,9 @@ public class UserService {
         Group adminGroup = groupService.getByName(GroupService.ADMIN_GROUP);
         adminUser.getGroups().add(adminGroup);
         save(adminUser);
+    }
+
+    public UserDetails getByLogin(String login) {
+        return userRepository.findOneByLogin(login);
     }
 }

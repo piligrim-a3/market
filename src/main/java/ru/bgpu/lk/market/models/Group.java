@@ -1,12 +1,14 @@
 package ru.bgpu.lk.market.models;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "groups")
-public class Group {
+public class Group implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,5 +50,10 @@ public class Group {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }
