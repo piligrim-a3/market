@@ -3,11 +3,13 @@ package ru.bgpu.lk.market.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bgpu.lk.market.models.Group;
 import ru.bgpu.lk.market.models.User;
 import ru.bgpu.lk.market.repositories.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
     @Autowired private UserRepository userRepository;
@@ -26,6 +28,7 @@ public class UserService {
         save(adminUser);
     }
 
+    @Transactional(readOnly = true)
     public UserDetails getByLogin(String login) {
         return userRepository.findOneByLogin(login);
     }
